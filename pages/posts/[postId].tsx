@@ -10,7 +10,7 @@ import { ClipLoader } from "react-spinners";
 type PostWithData = Prisma.PostGetPayload<{
   include: { user: true; comments: true };
 }>;
-const postView = () => {
+const PostView = () => {
   const router = useRouter();
   const { postId } = router.query;
 
@@ -37,4 +37,4 @@ const postView = () => {
   );
 };
 
-export default postView;
+export default PostView;
