@@ -12,6 +12,7 @@ interface ItemsType {
   href?: string;
   icon: IconType;
   auth?: boolean;
+  alert?: boolean;
 }
 const Sidebar = () => {
   const { data: currentUser } = useCurrentUser();
@@ -27,8 +28,14 @@ const Sidebar = () => {
       href: "/notifications",
       icon: BsBellFill,
       auth: true,
+      alert: currentUser?.hasNotification,
     },
-    { label: "Profile", href: "/user/123", icon: FaUser, auth: true },
+    {
+      label: "Profile",
+      href: `/users/${currentUser?.id}`,
+      icon: FaUser,
+      auth: true,
+    },
   ];
 
   return (
@@ -43,6 +50,7 @@ const Sidebar = () => {
               label={item.label}
               icon={item.icon}
               auth={item.auth}
+              alert={item.alert}
             />
           ))}
           {currentUser && (
